@@ -5,19 +5,19 @@
 Clone the project
 
 ```bash
-  git clone git@github.com:tegarsubkhan236/spring-basic-rest.git
+git clone git@github.com:tegarsubkhan236/spring-basic-rest.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd spring-basic-rest
+cd spring-basic-rest
 ```
 
 Start the server
 
 ```bash
-  ./mvnw clean spring-boot:run
+./mvnw clean spring-boot:run
 ```
 
 
@@ -25,7 +25,7 @@ Start the server
 
 #### Get all employees
 ```bash
-  curl -v localhost:8080/employees
+curl -v localhost:8080/employees
 ```
 ```json
 {
@@ -72,7 +72,7 @@ Start the server
 ```
 #### Get detail employee
 ```bash
-  curl -v localhost:8080/employees/1
+curl -v localhost:8080/employees/1
 ```
 ```json
 {
@@ -93,7 +93,7 @@ Start the server
 ```
 #### Post employee
 ```bash
-  curl -v POST localhost:8080/employees -H 'Content-Type:application/json' -d '{"name": "joko widodo", "role": "presiden"}'
+curl -v POST localhost:8080/employees -H 'Content-Type:application/json' -d '{"name": "joko widodo", "role": "presiden"}'
 ```
 ```json
 {
@@ -114,7 +114,7 @@ Start the server
 ```
 #### Put employee
 ```bash
-  curl -v PUT localhost:8080/employees/3 -H 'Content-Type: application/json' -d '{"name": "prabowo subianto", "role": "presiden"}'
+curl -v PUT localhost:8080/employees/3 -H 'Content-Type: application/json' -d '{"name": "prabowo subianto", "role": "presiden"}'
 ```
 ```json
 {
@@ -135,5 +135,148 @@ Start the server
 ```
 #### Delete employee
 ```bash
-  curl -v DELETE localhost:8080/employees/3
+curl -v DELETE localhost:8080/employees/3
+```
+#### Get All Orders
+```bash
+curl -v DELETE localhost:8080/orders
+```
+```json
+{
+    "_embedded": {
+        "orderList": [
+            {
+                "id": 1,
+                "description": "Macbook Pro",
+                "status": "IN_PROGRESS",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8080/orders/1"
+                    },
+                    "orders": {
+                        "href": "http://localhost:8080/orders"
+                    },
+                    "cancel": {
+                        "href": "http://localhost:8080/orders/1/cancel"
+                    },
+                    "complete": {
+                        "href": "http://localhost:8080/orders/1/complete"
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "description": "Iphone",
+                "status": "IN_PROGRESS",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8080/orders/2"
+                    },
+                    "orders": {
+                        "href": "http://localhost:8080/orders"
+                    },
+                    "cancel": {
+                        "href": "http://localhost:8080/orders/2/cancel"
+                    },
+                    "complete": {
+                        "href": "http://localhost:8080/orders/2/complete"
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/orders"
+        }
+    }
+}
+```
+#### Get detail order
+```bash
+curl -v localhost:8080/orders/1
+```
+```json
+{
+    "id": 1,
+    "description": "Macbook Pro",
+    "status": "IN_PROGRESS",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/orders/1"
+        },
+        "orders": {
+            "href": "http://localhost:8080/orders"
+        },
+        "cancel": {
+            "href": "http://localhost:8080/orders/1/cancel"
+        },
+        "complete": {
+            "href": "http://localhost:8080/orders/1/complete"
+        }
+    }
+}
+```
+#### Cancel Order
+```bash
+curl -v DELETE localhost:8080/orders/1/cancel
+```
+```json
+{
+    "id": 1,
+    "description": "Macbook Pro",
+    "status": "CANCELED",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/orders/1"
+        },
+        "orders": {
+            "href": "http://localhost:8080/orders"
+        }
+    }
+}
+```
+#### Complete Order
+```bash
+curl -v PUT localhost:8080/orders/2/complete
+```
+```json
+{
+    "id": 2,
+    "description": "Iphone",
+    "status": "COMPLETED",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/orders/2"
+        },
+        "orders": {
+            "href": "http://localhost:8080/orders"
+        }
+    }
+}
+```
+#### Create new Order
+```bash
+curl -v POST localhost:8080/orders -H 'Content-Type:application/json' -d '{"description": "Jengkol Goreng"}'
+```
+```json
+{
+    "id": 3,
+    "description": "Jengkol Goreng",
+    "status": "IN_PROGRESS",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/orders/3"
+        },
+        "orders": {
+            "href": "http://localhost:8080/orders"
+        },
+        "cancel": {
+            "href": "http://localhost:8080/orders/3/cancel"
+        },
+        "complete": {
+            "href": "http://localhost:8080/orders/3/complete"
+        }
+    }
+}
 ```
