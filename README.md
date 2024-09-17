@@ -20,6 +20,8 @@ Start the server
 ./mvnw clean spring-boot:run
 ```
 
+### Guide Reference
+[Building REST services with Spring](https://spring.io/guides/tutorials/rest)
 
 ### API Reference
 
